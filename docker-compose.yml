@@ -1,0 +1,15 @@
+version: '2'
+services:
+  microservice:
+    build: .
+    image: cloud_native_go:1.0.4-alpine
+    environment:
+    - PORT=9090
+    ports:
+    - "9090:9090"
+  ngnix:
+    image: "nginx:1.11.9"
+    ports:
+    - "8080:80"
+    links:
+    - microservice
